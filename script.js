@@ -24,8 +24,12 @@ btn.addEventListener("click", function () {
             return myPromise4(result3);
         })
         .then((result4) => {
-            output.textContent = `Final Result: ${result4}`;
+            output.textContent = `Result: ${result4}`;
+			return myPromise5(result4);
         })
+		.then((result5)=>{
+			output.textContent = `Final Result: ${result5}`;			
+		})
         .catch((err) => {
             output.textContent = `Error: ${err}`;
         });
@@ -58,7 +62,14 @@ function myPromise3(num) {
 function myPromise4(num) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(num / 2 + 10);
+            resolve(num / 2);
+        }, 1000); // 1 second
+    });
+}
+function myPromise5(num) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(num + 10);
         }, 1000); // 1 second
     });
 }
