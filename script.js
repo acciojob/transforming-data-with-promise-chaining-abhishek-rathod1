@@ -1,73 +1,64 @@
-//your JS code here. If required.
-const op = document.getElementById("output");
 const btn = document.getElementById("btn");
-btn.addEventListener("click",function () {
-const number = document.getElementById("ip").value;
-let num1 = parseInt(number);
-	myPromise1(num1)
-		.then((num1)=>{
-		op.textContent = num1;
-		return myPromise2(num1)
-		})
-		.then((num)=>{
-			op.textContent = num;
-			return myPromise3(num)
-		})
-		.then((num)=>{
-			op.textContent = num;
-			return myPromise4(num);
-		})
-		.then((num)=>{
-			op.textContent = num;
-			return myPromise5(num);
-		})
-		.then((num)=>{
-			op.textContent = num;
-		})
-		.catch((err)=>
-			console.log(err))
-})
+const output = document.getElementById("output");
+
+btn.addEventListener("click", function () {
+    const inputVal = document.getElementById("ip").value;
+    const num = parseFloat(inputVal);
+
+    if (isNaN(num)) {
+        output.textContent = "Please enter a valid number!";
+        return;
+    }
+
+    myPromise1(num)
+        .then((result1) => {
+            output.textContent = `Result: ${result1}`;
+            return myPromise2(result1);
+        })
+        .then((result2) => {
+            output.textContent = `Result: ${result2}`;
+            return myPromise3(result2);
+        })
+        .then((result3) => {
+            output.textContent = `Result: ${result3}`;
+            return myPromise4(result3);
+        })
+        .then((result4) => {
+            output.textContent = `Final Result: ${result4}`;
+        })
+        .catch((err) => {
+            output.textContent = `Error: ${err}`;
+        });
+});
 
 function myPromise1(num) {
-	return new Promise((resolve, reject)=>{
-		setTimeout(()=>{
-			resolve(num);
-		},2000)
-	})
-	
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(num);
+        }, 2000); // 2 seconds
+    });
 }
 
 function myPromise2(num) {
-	return new Promise((resolve, reject)=>{
-		setTimeout(()=>{
-			resolve(num*2);
-		},2000)
-	})	
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(num * 2);
+        }, 2000); // 2 seconds
+    });
 }
 
 function myPromise3(num) {
-	return new Promise((resolve, reject)=>{
-		setTimeout(()=>{
-			resolve(num-3);
-		},1000)
-	})
-	
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(num - 3);
+        }, 1000); // 1 second
+    });
 }
 
 function myPromise4(num) {
-	return new Promise((resolve, reject)=>{
-		setTimeout(()=>{
-			resolve(num/2);
-		},1000)
-	})
-	
-}
-
-function myPromise5(num) {
-	return new Promise((resolve, reject)=>{
-		setTimeout(()=>{
-			resolve(num+10);
-		},1000)
-	})
-	
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(num / 2 + 10);
+        }, 1000); // 1 second
+    });
 }
